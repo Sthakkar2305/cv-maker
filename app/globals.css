@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --paper-width: 210mm;
+  --paper-height: 297mm;
+  --resume-scale: 1;
+  --resume-font: 10.3pt;
+  --resume-gap: 13px;
+  --resume-section-gap: 15px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(135deg, rgba(248, 250, 252, 0.96), rgba(239, 244, 248, 0.9)),
+    radial-gradient(circle at 12% 12%, rgba(213, 187, 107, 0.14), transparent 30%);
+  color: #111827;
+  font-family: Inter, Source Sans 3, Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(169, 133, 42, 0.22);
+}
+
+@keyframes previewIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.paper-shell {
+  width: min(100%, var(--paper-width));
+  margin-inline: auto;
+}
+
+.resume-paper {
+  width: var(--paper-width);
+  min-height: var(--paper-height);
+  background: #fff;
+  color: #111827;
+  transform-origin: top center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: var(--resume-font);
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.resume-page {
+  width: var(--paper-width); /* 210mm */
+  min-height: var(--paper-height); /* 297mm */
+  padding: 32px 40px; /* Fixed margins for 100% identical browser and PDF layout rendering */
+  break-after: page;
+}
+
+.resume-page:last-child {
+  break-after: auto;
+}
+
+.resume-section {
+  margin-top: var(--resume-section-gap);
+}
+
+.resume-section:first-of-type {
+  margin-top: 0;
+}
+
+.resume-section-title {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #111827;
+  padding-bottom: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: calc(var(--resume-font) * 1.02);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #111827;
+}
+
+.resume-bullets {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  list-style-type: disc;
+}
+
+.resume-bullets li {
+  margin-top: 2px;
+  padding-left: 0;
+  display: list-item;
+}
+
+.form-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #b8c1cd transparent;
+}
+
+.form-scrollbar::-webkit-scrollbar {
+  width: 9px;
+}
+
+.form-scrollbar::-webkit-scrollbar-thumb {
+  background: #b8c1cd;
+  border-radius: 999px;
+}
+
+@media (max-width: 1180px) {
+  .resume-paper {
+    transform: scale(var(--resume-scale));
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #resume-export,
+  #resume-export * {
+    visibility: visible;
+  }
+
+  #resume-export {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: var(--paper-width);
+  }
+
+  .resume-paper {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .resume-page {
+    page-break-after: always;
+  }
+
+  .resume-page:last-child {
+    page-break-after: auto;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

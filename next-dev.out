@@ -1,0 +1,33 @@
+
+> premium-resume-builder@1.0.0 dev
+> next dev --port 3015
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3015
+   - Network:      http://10.237.209.2:3015
+
+ ✓ Starting...
+ ✓ Ready in 7.6s
+ ○ Compiling / ...
+ ✓ Compiled / in 27.5s (1783 modules)
+ GET / 200 in 29536ms
+ GET / 200 in 3196ms
+ GET / 200 in 1198ms
+ ✓ Compiled in 12.3s (1783 modules)
+ GET / 200 in 2456ms
+ GET / 200 in 671ms
+ GET / 200 in 2417ms
+ GET / 500 in 14869ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 15.1s (2116 modules)
+ GET / 200 in 6377ms
+ GET / 200 in 5991ms
+ GET / 200 in 1231ms
+ GET / 200 in 223ms
+ ✓ Compiled in 8.4s (1322 modules)
+ GET / 200 in 1606ms
+ GET / 200 in 229ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 11.5s (1404 modules)
+ GET / 500 in 53363ms
+ GET / 500 in 4223ms
