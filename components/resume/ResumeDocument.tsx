@@ -161,6 +161,11 @@ export function ResumeDocument({ data }: { data: ResumeData }) {
           <h1 data-resume-name className="font-serif text-[2.1em] font-bold leading-none tracking-normal text-black">
             {data.fullName || "Your Name"}
           </h1>
+          {data.title && (
+            <p className="text-[1.05em] font-semibold text-black mt-1 uppercase tracking-wide">
+              {data.title}
+            </p>
+          )}
           <ContactRow contacts={data.contacts} />
           <div className="w-full border-t border-black mt-2 mb-3"></div>
         </header>

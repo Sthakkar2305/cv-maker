@@ -3,6 +3,7 @@ import { LayoutProfile, ResumeData } from "@/types/resume";
 const bulletWeight = (items: string[]) => items.reduce((sum, item) => sum + Math.ceil(item.length / 90) + 1, 0);
 
 export function estimateResumeWeight(data: ResumeData) {
+  const titleWeight = data.title ? 1.5 : 0;
   const contactWeight = Object.values(data.contacts).filter(Boolean).length * 0.8;
   const summaryWeight = Math.ceil(data.summary.length / 95) + 2;
   
@@ -22,7 +23,7 @@ export function estimateResumeWeight(data: ResumeData) {
     return sum + 4 + Math.ceil((item.title.length + item.content.length) / 90);
   }, 0) || 0;
 
-  return contactWeight + summaryWeight + skillWeight + expWeight + eduWeight + projectWeight + certWeight + listWeight + customSectionWeight;
+  return titleWeight + contactWeight + summaryWeight + skillWeight + expWeight + eduWeight + projectWeight + certWeight + listWeight + customSectionWeight;
 }
 
 export function getLayoutProfile(data: ResumeData): LayoutProfile {
