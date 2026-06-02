@@ -53,7 +53,7 @@ export function getLayoutProfile(data: ResumeData): LayoutProfile {
 export function splitBullets(value: string) {
   return value
     .split(/\n|;/)
-    .map((item) => item.replace(/^[-•]\s*/, "").trim())
+    .map((item) => item.replace(/^[-*]\s*/, "").trim())
     .filter(Boolean);
 }
 

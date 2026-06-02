@@ -1,4 +1,5 @@
 export type LinkKey = "email" | "phone" | "linkedin" | "github" | "portfolio" | "address";
+export type ResumeTemplateId = "classic" | "sidebar" | "timeline" | "green";
 
 export interface ContactLinks {
   phone: string;
@@ -77,4 +78,3 @@ export interface LayoutProfile {
   itemGapPx: number;
   pages: number;
 }
-
