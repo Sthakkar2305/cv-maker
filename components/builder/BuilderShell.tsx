@@ -60,6 +60,7 @@ export function BuilderShell() {
       }
 
       if (!parsed.customSections) parsed.customSections = [];
+      if (typeof parsed.photoUrl !== "string") parsed.photoUrl = "";
       setData(parsed as ResumeData);
     } catch (error) {
       console.error("Failed to parse stored resume state", error);

@@ -538,6 +538,7 @@ select {
 }
 
 .green-avatar {
+  overflow: hidden;
   width: 130px;
   height: 130px;
   margin: 0 auto 22px;
@@ -546,6 +547,12 @@ select {
   background:
     radial-gradient(circle at 48% 36%, #f0f0f0 0 18%, transparent 19%),
     linear-gradient(135deg, #28313a, #f3f4f6);
+}
+
+.green-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .green-name {

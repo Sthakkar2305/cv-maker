@@ -643,7 +643,12 @@ function GreenResume({ data }: { data: ResumeData }) {
     >
       <div className="resume-page green-page">
         <aside className="green-left">
-          <div className="green-avatar" aria-hidden />
+          <div className="green-avatar" aria-hidden={!data.photoUrl}>
+            {data.photoUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={data.photoUrl} alt="" />
+            ) : null}
+          </div>
           <h1 data-resume-name className="green-name">{data.fullName || "Your Name"}</h1>
           {data.title ? <p className="green-role">{data.title}</p> : null}
 

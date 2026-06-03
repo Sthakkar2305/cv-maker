@@ -6,6 +6,7 @@ export const createId = () =>
     : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
 export const initialResume: ResumeData = {
+  photoUrl: "",
   fullName: "Aarav Mehta",
   title: "Senior Frontend Engineer",
   contacts: {

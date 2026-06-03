@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Plus, Trash2 } from "lucide-react";
+import { ImagePlus, Plus, Trash2 } from "lucide-react";
 import { createId } from "@/lib/resumeSeed";
 import { joinBullets, splitBullets } from "@/lib/layoutEngine";
 import { CertificationItem, EducationItem, ExperienceItem, ProjectItem, ResumeData, SkillGroup, CustomSection } from "@/types/resume";
@@ -66,10 +66,60 @@ export function ResumeForm({ data, setData }: Props) {
     setData((current) => ({ ...current, [key]: (current[key] as { id: string }[]).filter((item) => item.id !== id) }));
   };
 
+  const handlePhotoUpload = (file: File | null) => {
+    if (!file) return;
+    if (!file.type.startsWith("image/")) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        update("photoUrl", reader.result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="grid gap-4">
       <SectionCard title="Profile">
         <div className="grid gap-3">
+          <div className="flex flex-wrap items-center gap-4 rounded-md border border-ink-200 bg-ink-50 p-3">
+            <div className="grid h-20 w-20 place-items-center overflow-hidden rounded-full border-4 border-green-100 bg-white text-ink-400">
+              {data.photoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={data.photoUrl} alt="Uploaded profile preview" className="h-full w-full object-cover" />
+              ) : (
+                <ImagePlus size={24} />
+              )}
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-bold text-ink-900">Profile Photo</p>
+              <p className="mt-1 text-xs leading-5 text-ink-500">Used in the Green Designer circular photo area.</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <label className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-ink-200 bg-white px-3 py-2 text-sm font-semibold text-ink-700 transition hover:border-ink-300 hover:bg-ink-50">
+                  <ImagePlus size={16} /> Upload image
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="sr-only"
+                    onChange={(event) => {
+                      handlePhotoUpload(event.target.files?.[0] ?? null);
+                      event.currentTarget.value = "";
+                    }}
+                  />
+                </label>
+                {data.photoUrl ? (
+                  <button
+                    type="button"
+                    onClick={() => update("photoUrl", "")}
+                    className="inline-flex items-center gap-2 rounded-md border border-ink-200 bg-white px-3 py-2 text-sm font-semibold text-ink-700 transition hover:bg-red-50 hover:text-red-600"
+                  >
+                    <Trash2 size={16} /> Remove
+                  </button>
+                ) : null}
+              </div>
+            </div>
+          </div>
           <div className="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
             <Field label="Full Name" value={data.fullName} onChange={(value) => update("fullName", value)} />
             <Field label="Role / Title" value={data.title} onChange={(value) => update("title", value)} />
